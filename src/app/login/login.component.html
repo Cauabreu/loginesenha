@@ -1,0 +1,29 @@
+<div class="form-container">
+    <form (ngSubmit)="login()" #loginForm="ngForm">
+      <div class="form-group">
+        <h1>Login</h1>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" [(ngModel)]="email" required email />
+        <div *ngIf="loginForm.submitted && loginForm.controls['email'].invalid" class="error-message">
+          O email deve ser válido.
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="password">Senha:</label>
+        <input type="password" id="password" name="password" [(ngModel)]="password" minlength="6" required />
+        <div *ngIf="loginForm.submitted && loginForm.controls['password'].invalid" class="error-message">
+          A senha deve ter pelo menos 6 caracteres.
+        </div>
+      </div>
+  
+      <button type="submit" [disabled]="loginForm.invalid">Entrar</button>
+      <div *ngIf="loginSuccess" class="success-message">
+        Login efetuado com sucesso!
+      </div>
+  
+      <div *ngIf="loginError" class="error-message">
+        Email ou senha incorretos. Tente novamente.
+      </div>
+    </form>
+  </div>
